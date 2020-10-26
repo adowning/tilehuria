@@ -1,0 +1,11 @@
+/dist
+/src-bex/www
+/src-capacitor
+/src-cordova
+/.quasar
+/node_modules
+node_modules
+/hooks
+/worker
+*.js
+/src/generated/index.ts

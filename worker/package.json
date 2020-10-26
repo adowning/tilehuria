@@ -1,0 +1,39 @@
+{
+  "name": "tile-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "watch": "ts-node-dev src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@mapbox/mbtiles": "^0.12.1",
+    "@turf/bbox": "^6.0.1",
+    "@turf/square-grid": "^6.0.2",
+    "amqplib": "^0.6.0",
+    "aws-sdk": "^2.709.0",
+    "geojson": "^0.5.0",
+    "got": "^11.5.1",
+    "graphql": "^15.3.0",
+    "graphql-request": "2.1.0-next.1",
+    "graphql-tag": "^2.10.3",
+    "p-queue": "^6.6.0",
+    "sharp": "^0.25.4",
+    "temp-dir": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/geojson": "^7946.0.7",
+    "@types/node": "^14.0.26",
+    "@types/sharp": "^0.25.0",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.49",
+    "typescript": "^3.9.7"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

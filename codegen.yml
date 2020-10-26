@@ -1,0 +1,82 @@
+overwrite: true
+schema:
+  - 'http://localhost:8080/v1/graphql':
+      headers:
+        x-hasura-admin-secret: ${HASURA_GRAPHQL_ADMIN_SECRET}
+documents: 'src/graphql/**/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+# TODO single config for everyone
+generates:
+  hooks/src/generated/index.ts:
+    plugins:
+      - typescript
+    config:
+      maybeValue: T | undefined
+      scalars:
+        citext: string
+        uuid: string
+        timestamptz: Date
+        jsonb: '{ [key: string]: any }'
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        transformUnderscore: true
+  worker/src/generated/index.ts:
+    plugins:
+      - typescript
+    config:
+      maybeValue: T | undefined
+      scalars:
+        citext: string
+        uuid: string
+        timestamptz: Date
+        smallint: number
+        numeric: number
+        jsonb: '{ [key: string]: any }'
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        transformUnderscore: true
+  ./src/generated/fragment-matcher.ts:
+    plugins:
+      - fragment-matcher
+    config:
+      apolloClientVersion: 2
+  ./src/generated/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+      - named-operations-object
+    config:
+      # nonOptionalTypename: true
+      maybeValue: T | undefined
+      scalars:
+        citext: string
+        uuid: string
+        timestamptz: Date
+        smallint: number
+        numeric: number
+        jsonb: '{ [key: string]: any }'
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        transformUnderscore: true
+  ./src/schema.graphql:
+    plugins:
+      - schema-ast
+
+  # * Not working with typed-document-node
+  # src/generated/vue.ts:
+  #   plugins:
+  #     - typescript-vue-apollo
+  #   config:
+  #     namingConvention:
+  #       typeNames: pascal-case#pascalCase
+  #       transformUnderscore: true
+  #     documentMode: external
+  #     importDocumentNodeExternallyFrom: ./index
+  #     importOperationTypesFrom: Operations
+
+  ./schema.graphql:
+    plugins:
+      - schema-ast

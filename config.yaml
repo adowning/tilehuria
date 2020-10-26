@@ -1,0 +1,5 @@
+version: 2
+endpoint: https://hasura-fgxgp5p9.nhost.app
+admin_secret: asdfasdf
+migrations_directory: hasura/migrations
+metadata_directory: hasura/metadata
